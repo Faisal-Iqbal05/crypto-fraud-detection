@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: cryptoshield-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+
+  - type: web
+    name: cryptoshield-dashboard
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
